@@ -1,7 +1,12 @@
+"""
+Solução branch-and-bound do problema do knapsack.
+
+Essa solução não deve ser usada em conjunto com paralelismo, pois ela faz uso de globais.
+É fortemente recomendado que cada execução desse script seja feita em um processo separado.
+"""
+
 from generics import Number
 from bitmask import Bitmask
-
-from math import inf
 
 
 best_mask: Bitmask = Bitmask(0, 0)
@@ -23,6 +28,7 @@ def reset_globals():
 
 
 def upper_bound(items: list[Item], C: Number, i: int, acc: Number) -> Number:
+    # TODO: Melhorar essa função para achar um UB mais realista (considerando itens subsequentes)
     if i == len(items) - 1: return acc
     elif 0 <= i < len(items) - 1: return acc + items[i].value + (C - items[i+1].weight) * items[i+1].ratio
     else: raise IndexError(f"i deve estar entre 0 <= i < {len(items)}, mas foi recebido i={i}.")
