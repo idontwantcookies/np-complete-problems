@@ -77,17 +77,19 @@ def heuristics(weights: list[float]) -> float:
 
 
 if __name__ == "__main__":
+    bpi = BinPackingInstance(0.4, 0.7, 0.2, 0.1, 0.5)
+    bin_pack_first_fit(bpi)
+    bpi.print_items()
+
+    print()
+
+    bpi = BinPackingInstance(0.4, 0.7, 0.2, 0.1, 0.5)
+    bin_packing_first_fit_decreasing(bpi)
+    bpi.print_items()
+
+    print()
+
     seed(SEED)
-    # bpi = BinPackingInstance(0.4, 0.7, 0.2, 0.1, 0.5)
-    # bin_pack_first_fit(bpi)
-    # bpi.print_items()
-
-    # print()
-
-    # bpi = BinPackingInstance(0.4, 0.7, 0.2, 0.1, 0.5)
-    # bin_packing_first_fit_decreasing(bpi)
-    # bpi.print_items()
-
     global_results = {}
     for n in range(MIN_SIZE, MAX_SIZE):
         results = []
@@ -97,4 +99,3 @@ if __name__ == "__main__":
         global_results[n] = mean(results)
     for n, avg in global_results.items():
         print(n, avg)
-
